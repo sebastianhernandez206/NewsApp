@@ -49,10 +49,62 @@ fun NewsScreen(modifier: Modifier = Modifier) {
         SearchBar()
         Spacer(modifier = Modifier.height(16.dp))
         CategoryTabs()
+        Spacer(modifier = Modifier.height(24.dp))
 
+        Text(
+            text = "Ultimas noticias",
+            fontSize = 24.sp,
+            fontWeight = FontWeight.ExtraBold,
+            color = Color.Black
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        LatestNewsSection()
+    }
+}
+@Composable
+fun LatestNewsSection() {
+    // Usamos LazyRow para que se pueda deslizar horizontalmente
+    androidx.compose.foundation.lazy.LazyRow(horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        items(3) { // Vamos a crear 3 tarjetas de ejemplo
+            NewsCard()
+        }
     }
 }
 
+@Composable
+fun NewsCard() {
+    Card(
+        modifier = Modifier
+            .width(280.dp)
+            .height(200.dp),
+        shape = RoundedCornerShape(24.dp),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFF6B4DFF)) // El morado de la imagen
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(20.dp),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = "El presidente de EE.UU. no muestra signos de arrepentimiento...",
+                color = Color.White,
+                fontSize = 22.sp,
+                fontWeight = FontWeight.Bold,
+                lineHeight = 28.sp
+            )
+
+            Text(
+                text = "febrero 08 - 2024",
+                color = Color.LightGray,
+                fontSize = 14.sp
+            )
+        }
+    }
+}
 @Composable
 fun SearchBar() {
     OutlinedCard(
@@ -69,7 +121,7 @@ fun SearchBar() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
-                imageVector = Icons.Default.Home, // Puedes buscar uno más parecido al de la imagen
+                imageVector = Icons.Default.Home,
                 contentDescription = "Home",
                 tint = Color.Black
             )
